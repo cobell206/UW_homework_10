@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></head>
+<body>
+    <div class="jumbotron">
+        <div class="container">
+            <div class="row">
+                <h1>Employee Card</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row" id="employee_card"><div class="col-4">
+<div class="card mb-3">
+    <div class="card-header bg-info text-center">
+        <h5>Colin</h5>
+        <h5>Manager</h5>
+    </div>
+    <div class="card-body">
+        <p class="border m-3 p-2">ID: </p>
+        <p class="border m-3 p-2">Email: </p>
+        <p class="border m-3 p-2">Extra: </p>
+    </div>
+</div>
+</div><div class="col-4">
+<div class="card mb-3">
+    <div class="card-header bg-info text-center">
+        <h5>Colin</h5>
+        <h5>Manager</h5>
+    </div>
+    <div class="card-body">
+        <p class="border m-3 p-2">ID: </p>
+        <p class="border m-3 p-2">Email: </p>
+        <p class="border m-3 p-2">Extra: </p>
+    </div>
+</div>
+</div></div>
+
+</div>
+
+<script>
+    fs = require('fs')
+
+    employee_data = fs.readFile('EmployeeInfo.json', utf8, (err, data) => {
+        if (err) throw err
+        return data
+    })
+
+    console.log(employee_data);
+</script>
+<!-- <script src="javascript.js"></script> -->
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+</body>
+</html>

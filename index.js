@@ -1,80 +1,9 @@
 const fs = require('fs')
 const inquirer = require('inquirer')
 const createHTML = require('./createHTML')
-
-
-// const { resolve } = require('path')
-// const { report } = require('process')
+const {Employee, Manager, Engineer, Intern} = require('./employee_generator')
 
 const employees = []
-
-// Class for base employee
-class Employee {
-    constructor(name, id, email) {
-        this.name = name
-        this.id = id
-        this.email = email
-        this.getName = () => {
-            return this.name
-        }
-        this.getId = () => {
-            return this.id
-        }
-        this.getEmail = () => {
-            return this.email
-        }
-        this.getRole = () => {
-            return 'Employee'
-        }
-    }
-    
-}
-
-// Manager class
-class Manager extends Employee {
-    constructor(name, id, email, office_number) {
-        super(name, id, email)
-        this.office_number = office_number
-        this.role = 'manager'
-
-        // Override getRole
-        this.getRole = () => {
-            return 'Manager'
-        }
-    }  
-}
-
-// Engineer Class
-class Engineer extends Employee {
-    constructor(name, id, email, github) {
-        super(name, id, email)
-        this.github = github
-        this.role = 'engineer'
-
-        this.getRole = () => {
-            return 'Engineer'
-        }
-        this.getGithub = () => {
-            return this.github
-        }
-    }
-}
-// Intern Class
-class Intern extends Employee {
-    constructor(name, id, email, school) {
-        super(name, id, email)
-        this.school = school
-        this.role = 'intern'
-
-        this.getRole = () => {
-            return 'Intern'
-        }
-
-        this.getSchool = () => {
-            return this.school
-        }
-    }
-}
 
 // Function to get employee type
 async function get_employee() {
@@ -100,7 +29,7 @@ async function get_manager() {
         {
             name: 'name',
             type: 'input',
-            message: 'What is their name?',
+            message: 'What is the managers name?',
         },
         {
             name: 'id',
@@ -204,7 +133,9 @@ async function add_employee() {
         }
         else if (answer.enter == 'No') {
             is_done = true
+            // Wite json file
             fs.writeFileSync('EmployeeInfo.json', JSON.stringify(employees))
+            // Write html file
             createHTML.create_file()
             console.log("Saved employees, exiting...");
             return 'done'
@@ -224,6 +155,7 @@ async function add_employee() {
     
 }
 
+// Run main functions
 async function get_info() {
     await get_manager()
     while (!is_done) {
